@@ -6,7 +6,7 @@ import CustomTextField from '../../Atoms/CustomTextField/CustomTextField'
 type TRHFTextField = {
    name: string
    options: { value: string; label: string }[]
-} & TextFieldProps
+} & Partial<TextFieldProps>
 
 const RHFTextField: React.FC<TRHFTextField> = ({ name, ...restProps }) => {
    const {

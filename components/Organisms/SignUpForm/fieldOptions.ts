@@ -21,9 +21,9 @@ type TSignUpCheckboxOptions = Record<
 
 type TFieldOptions = TSignUpTextfieldOptions & TSignUpCheckboxOptions
 
-export const fieldOptions: TSignUpTextfieldOptions = {
+export const fieldOptions: TFieldOptions = {
    email: { Component: RHFTextField, label: 'email' },
    password: { Component: RHFTextField, label: 'password' },
    country: { Component: RHFTextField, label: 'country', select: true },
-   // sex: { Component: RHFCheckbox, label: 'sex' },
+   sex: { Component: RHFCheckbox, label: 'sex' },
 }

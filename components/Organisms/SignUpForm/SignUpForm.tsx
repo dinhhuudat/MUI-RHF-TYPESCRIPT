@@ -1,25 +1,33 @@
 import { Button, Stack, Typography } from '@mui/material'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { fieldOptions, TCheckboxFields, TSelectFields } from './fieldOptions'
+import { fieldOptions } from './fieldOptions'
 
 type TOptionSelect = { value: string; label: string }
+type TOptionCheckbox = { value: string; text: string }
+
 const COUNTRY_OPTIONS: TOptionSelect[] = [
    { value: '1', label: 'VIET NAM' },
    { value: '2', label: 'LAO' },
    { value: '3', label: 'CAMPUCHIA' },
 ]
 
-const SEX_OPTIONS: TOptionSelect[] = [
-   { value: '1', label: 'MALE' },
-   { value: '2', label: 'FEMALE' },
+const SEX_OPTIONS: TOptionCheckbox[] = [
+   { value: '1', text: 'MALE' },
+   { value: '2', text: 'FEMALE' },
 ]
+
+const getOptions: Record<string, Array<TOptionSelect | TOptionCheckbox>> = {
+   country: COUNTRY_OPTIONS,
+   sex: SEX_OPTIONS,
+}
 
 const SignUp: React.FC = () => {
    const defaultValues = {
       email: '',
       password: '',
       country: '3',
+      sex: '1',
    }
 
    const methods = useForm({ defaultValues: defaultValues })
@@ -42,9 +50,11 @@ const SignUp: React.FC = () => {
                   ).map((fieldName) => {
                      const { Component, ...restOptions } =
                         fieldOptions[fieldName]
-                     const options =
-                        fieldName === 'country' ? COUNTRY_OPTIONS : []
+                     const options = getOptions[fieldName]
+                        ? getOptions[fieldName]
+                        : []
                      return (
+                        // @ts-ignore
                         <Component
                            key={fieldName}
                            name={fieldName}
