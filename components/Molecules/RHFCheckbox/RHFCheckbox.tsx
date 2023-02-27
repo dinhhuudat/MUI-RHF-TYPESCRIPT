@@ -1,22 +1,29 @@
-import Checkbox, { CheckboxProps } from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
+import { CheckboxProps } from '@mui/material/Checkbox'
 import React from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
+import CustomCheckbox from '../../Atoms/CustomCheckbox/CustomCheckbox'
 
 type TRHFCheckboxProps = {
-   type: 'checkbox'
+   name: string
    label: string
-   message: string
+   options: any
 } & CheckboxProps
 
-const RHFCheckbox: React.FC<TRHFCheckboxProps> = ({
-   message,
-   checked,
-   label,
-}) => {
+const RHFCheckbox: React.FC<TRHFCheckboxProps> = ({ name, ...restProps }) => {
+   const { control } = useFormContext()
    return (
-      <FormControlLabel
-         label={label}
-         control={<Checkbox checked={checked} />}
+      <Controller
+         control={control}
+         name={name}
+         render={({ field: { ref, ...restField } }) => {
+            return (
+               <CustomCheckbox
+                  sx={{ mb: '1.5rem' }}
+                  {...restField}
+                  {...restProps}
+               ></CustomCheckbox>
+            )
+         }}
       />
    )
 }

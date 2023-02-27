@@ -1,28 +1,23 @@
-import {
-   FormControl,
-   FormHelperText,
-   FormLabel,
-   TextField,
-   TextFieldProps,
-} from '@mui/material'
+import { FormControl, MenuItem, TextField, TextFieldProps } from '@mui/material'
 import React from 'react'
 
 type TRHFCustomTextFieldProps = {
-   name: string
+   options?: { value: string; label: string }[]
 } & TextFieldProps
 
 const CustomTextField: React.FC<TRHFCustomTextFieldProps> = ({
-   name,
-   label,
-   helperText,
-   error,
+   options,
    ...otherProps
 }) => {
    return (
       <FormControl>
-         <FormLabel>{label}</FormLabel>
-         <TextField {...otherProps} variant="outlined"></TextField>
-         {error && <FormHelperText>{helperText}</FormHelperText>}
+         <TextField variant="outlined" {...otherProps}>
+            {options?.map((option) => (
+               <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+               </MenuItem>
+            ))}
+         </TextField>
       </FormControl>
    )
 }

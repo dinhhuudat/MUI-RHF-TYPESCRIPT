@@ -1,1 +1,1 @@
-export * as RHFCheckbox from './RHFCheckbox'
+export * as CustomCheckbox from './RHFCheckbox'

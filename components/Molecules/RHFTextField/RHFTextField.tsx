@@ -1,13 +1,14 @@
-import { TextField, TextFieldProps } from '@mui/material'
+import { TextFieldProps } from '@mui/material'
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import CustomTextField from '../../Atoms/CustomTextField/CustomTextField'
 
 type TRHFTextField = {
    name: string
+   options: { value: string; label: string }[]
 } & TextFieldProps
 
-const RHFTextField: React.FC<TRHFTextField> = ({ name, ...otherProps }) => {
+const RHFTextField: React.FC<TRHFTextField> = ({ name, ...restProps }) => {
    const {
       control,
       formState: { errors },
@@ -20,8 +21,6 @@ const RHFTextField: React.FC<TRHFTextField> = ({ name, ...otherProps }) => {
             render={({ field: { ref, ...restField } }) => {
                return (
                   <CustomTextField
-                     {...restField}
-                     {...otherProps}
                      variant="outlined"
                      sx={{ mb: '1.5rem' }}
                      error={!!errors[name]}
@@ -30,6 +29,8 @@ const RHFTextField: React.FC<TRHFTextField> = ({ name, ...otherProps }) => {
                            ? (errors[name]?.message as unknown as string)
                            : ''
                      }
+                     {...restField}
+                     {...restProps}
                   ></CustomTextField>
                )
             }}
