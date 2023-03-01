@@ -50,6 +50,11 @@ const SignUp: React.FC = () => {
       window.alert(value)
    }
 
+   const onReset = () => {
+      const { reset } = methods
+      reset()
+   }
+
    return (
       <Stack className="SignUpForm__container">
          <Typography variant="h2">SIGN UP FORM</Typography>
@@ -76,9 +81,14 @@ const SignUp: React.FC = () => {
                         />
                      )
                   })}
-                  <Button variant="outlined" type="submit">
-                     SIGN UP
-                  </Button>
+                  <Stack gap={2} direction="row" justifyContent="flex-end">
+                     <Button variant="outlined" onClick={onReset}>
+                        RESET
+                     </Button>
+                     <Button variant="outlined" type="submit">
+                        SIGN UP
+                     </Button>
+                  </Stack>
                </Stack>
             </form>
          </FormProvider>
