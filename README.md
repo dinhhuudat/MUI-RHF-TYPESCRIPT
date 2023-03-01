@@ -12,6 +12,7 @@ yarn dev
 
 ### TECHNOLOGIES
 
+-  Atomic Design
 -  Nextjs : 13.1.1
 -  MUI : ^5.11.3
 -  RHF : 7.41.5
