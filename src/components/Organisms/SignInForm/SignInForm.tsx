@@ -1,6 +1,8 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import RHFTextField from '../../Molecules/RHFTextField/RHFTextField'
 import { fieldOptions } from './fieldOptions'
 
@@ -10,7 +12,15 @@ const SignIn: React.FC = () => {
       password: '',
    }
 
-   const methods = useForm({ defaultValues: defaultValues })
+   const schemaForm = z.object({
+      email: z.string().min(1).email(),
+      password: z.string().min(1),
+   })
+
+   const methods = useForm({
+      defaultValues: defaultValues,
+      resolver: zodResolver(schemaForm),
+   })
 
    const onSubmit = (formValues: { email: string; password: string }) => {
       const value = JSON.stringify(formValues)

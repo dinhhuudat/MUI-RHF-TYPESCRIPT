@@ -1,6 +1,8 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { fieldOptions } from './fieldOptions'
 
 type TOptionSelect = { value: string; label: string }
@@ -30,9 +32,20 @@ const SignUp: React.FC = () => {
       sex: '1',
    }
 
-   const methods = useForm({ defaultValues: defaultValues })
+   const schemaForm = z.object({
+      email: z.string().min(1).email(),
+      password: z.string().min(1),
+      country: z.string(),
+      sex: z.string(),
+   })
+
+   const methods = useForm({
+      defaultValues: defaultValues,
+      resolver: zodResolver(schemaForm),
+   })
 
    const onSubmit = (formValues: { email: string; password: string }) => {
+      console.log('submit')
       const value = JSON.stringify(formValues)
       window.alert(value)
    }
