@@ -1,25 +1,22 @@
 {
    "name": "rhfmui",
    "version": "0.1.0",
-   "private": true,
-   "husky": {
-      "hooks": {
-         "pre-commit": "lint-staged"
-      }
-   },
+   "private": true, 
    "lint-staged": {
-      "*.{js,json,css,scss,html,md}": [
-         "prettier --write",
-         "git add"
+      "*.ts": [
+         "npm run lint",
+         "npm run format",
+         "git add ."
       ]
    },
    "scripts": {
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
-      "lint": "prettier --check .",
+      "lint": "prettier",
       "format": "prettier --write ."
    },
+   "postinstall": "husky install",
    "dependencies": {
       "@emotion/react": "^11.10.5",
       "@emotion/styled": "^11.10.5",
@@ -31,7 +28,6 @@
       "@types/react-dom": "18.0.10",
       "eslint": "8.31.0",
       "eslint-config-next": "13.1.1",
-      "husky": "^4.3.8",
       "lint-staged": "^13.1.2",
       "next": "13.1.1",
       "react": "^18.2.0",
@@ -42,6 +38,7 @@
       "zod": "^3.20.6"
    },
    "devDependencies": {
+      "husky": "^8.0.3",
       "prettier": "^2.8.4"
    }
 }

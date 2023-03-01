@@ -6,6 +6,10 @@ import { z } from 'zod'
 import RHFTextField from '../../Molecules/RHFTextField/RHFTextField'
 import { fieldOptions } from './fieldOptions'
 
+interface IAB {
+   a: any
+}
+
 const SignIn: React.FC = () => {
    const defaultValues = {
       email: '',
@@ -21,9 +25,6 @@ const SignIn: React.FC = () => {
       defaultValues: defaultValues,
       resolver: zodResolver(schemaForm),
    })
-
-   const a=
-   const b=
 
    const onSubmit = (formValues: { email: string; password: string }) => {
       const value = JSON.stringify(formValues)
