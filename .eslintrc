@@ -1,0 +1,12 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+        "plugin:@shopify/typescript",
+        "plugin:@shopify/react",
+        "plugin:@shopify/prettier"
+    ] 
+  }
