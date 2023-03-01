@@ -37,6 +37,7 @@
       "zod": "^3.20.6"
    },
    "devDependencies": {
+      "@shopify/eslint-plugin": "^42.0.3",
       "@typescript-eslint/eslint-plugin": "^5.54.0",
       "@typescript-eslint/parser": "^5.54.0",
       "eslint": "^8.35.0",

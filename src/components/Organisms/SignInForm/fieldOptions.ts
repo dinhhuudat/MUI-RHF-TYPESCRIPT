@@ -2,10 +2,9 @@ import { TextFieldProps } from '@mui/material'
 
 type TTextfields = 'email' | 'password'
 
-type TSignUpTextfieldOptions = Record<
-   TTextfields,
-   TextFieldProps & { type: 'textfield' }
->
+type TSignUpTextfieldOptions = {
+   [key in TTextfields]: TextFieldProps & { type: 'textfield' }
+}
 
 type TFieldOptions = TSignUpTextfieldOptions
 
